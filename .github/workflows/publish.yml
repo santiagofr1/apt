@@ -1,0 +1,56 @@
+# Arma el repo apt con los .deb de los Releases de cada app (apps.txt),
+# lo firma y lo publica en GitHub Pages.
+name: publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # las apps lo disparan al publicar un Release (opcional, necesita token)
+  repository_dispatch:
+    types: [publish]
+  # red de seguridad: cada hora levanta Releases nuevos aunque nadie avise
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Herramientas
+        run: sudo apt-get update && sudo apt-get install -y apt-utils
+
+      - name: Importar clave de firma
+        env:
+          KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
+        run: echo "$KEY" | gpg --batch --import
+
+      - name: Armar repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./build.sh
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
