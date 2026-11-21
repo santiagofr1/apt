@@ -10,12 +10,13 @@ sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://santiagofr1.github.io/apt/key.asc | sudo gpg --dearmor -o /etc/apt/keyrings/santiagofr1.gpg
 echo "deb [signed-by=/etc/apt/keyrings/santiagofr1.gpg] https://santiagofr1.github.io/apt stable main" | sudo tee /etc/apt/sources.list.d/santiagofr1.list
 sudo apt update
-sudo apt install rtop
+sudo apt install rtop opennote
 ```
 
 | Paquete | Qué es |
 |---|---|
 | [rtop](https://github.com/santiagofr1/rtop) | Monitor del sistema para Linux (TUI y GUI) |
+| [opennote](https://github.com/santiagofr1/OpenNote) | Apuntes a mano con lápiz, sin cuentas ni nube |
 
 ## Cómo funciona
 
