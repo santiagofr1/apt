@@ -17,6 +17,7 @@ sudo apt install rtop opennote
 |---|---|
 | [rtop](https://github.com/santiagofr1/rtop) | Monitor del sistema para Linux (TUI y GUI) |
 | [opennote](https://github.com/santiagofr1/OpenNote) | Apuntes a mano con lápiz, sin cuentas ni nube |
+| [claude-sesiones](https://github.com/santiagofr1/claude-sesiones) | `ses`: lista, borra, restaura y limpia sesiones de Claude Code |
 
 ## Cómo funciona
 
