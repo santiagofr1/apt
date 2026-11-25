@@ -1,5 +1,5 @@
 # Repos de GitHub cuyos Releases se publican en este repo apt.
 # Cada Release tiene que traer uno o más .deb como assets.
 santiagofr1/rtop
-santiagofr1/OpenNote
+santiagofr1/Vynote
 santiagofr1/claude-sesiones
